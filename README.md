@@ -1,9 +1,9 @@
 # 🔍 AI Semantic Search Engine
 
 ## 🚀 Overview
-A full-stack AI-powered search engine that retrieves results based on **semantic meaning** rather than keyword matching.
+This project is a full-stack AI-powered semantic search engine that retrieves results based on **meaning** rather than simple keyword matching.
 
-Built using transformer-based embeddings, this system understands user intent and returns contextually relevant results.
+It uses transformer-based embeddings to understand user intent and return contextually relevant results in real time.
 
 ---
 
@@ -18,11 +18,12 @@ Built using transformer-based embeddings, this system understands user intent an
 ---
 
 ## 🧠 Features
-- Semantic search using Sentence Transformers (MiniLM)
-- Cosine similarity-based ranking
-- FastAPI backend with REST API
-- Interactive frontend UI
-- Real-time results
+- 🔹 Semantic search using Sentence Transformers (MiniLM)
+- 🔹 Context-aware search results (not keyword-based)
+- 🔹 Cosine similarity ranking
+- 🔹 FastAPI backend with REST API
+- 🔹 Interactive frontend UI
+- 🔹 Real-time search results
 
 ---
 
@@ -36,16 +37,11 @@ Built using transformer-based embeddings, this system understands user intent an
 ---
 
 ## ⚙️ How It Works
-1. Convert documents into vector embeddings
-2. Convert query into embedding
-3. Compute cosine similarity
-4. Return top relevant results
+1. Documents are converted into vector embeddings using a transformer model
+2. User query is converted into an embedding
+3. Cosine similarity is computed between query and documents
+4. Top relevant results are returned
 
 ---
 
-## ▶️ Run Locally
-
-```bash
-cd backend
-pip install -r requirements.txt
-python3 -m uvicorn app:app --reload
+## 📁 Project Structure
