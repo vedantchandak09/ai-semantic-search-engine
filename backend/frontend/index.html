@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+  <head>
+    <title>AI Search Engine</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 100px;
+        background-color: #f5f5f5;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      input {
+        width: 350px;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        padding: 12px 20px;
+        font-size: 16px;
+        margin-left: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      #results {
+        margin-top: 30px;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+      }
+
+      .result {
+        background: white;
+        padding: 12px;
+        margin-bottom: 12px;
+        border-radius: 6px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      #loading {
+        margin-top: 20px;
+        font-size: 18px;
+        color: gray;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>🔍 AI Search Engine</h1>
+
+    <input
+      type="text"
+      id="query"
+      placeholder="Search anything..."
+      onkeypress="handleEnter(event)"
+    />
+
+    <button onclick="search()">Search</button>
+
+    <div id="loading"></div>
+    <div id="results"></div>
+
+    <script>
+      function handleEnter(event) {
+        if (event.key === "Enter") {
+          search();
+        }
+      }
+
+      async function search() {
+        let query = document.getElementById("query").value.trim();
+
+        if (!query) {
+          alert("Please enter a search query");
+          return;
+        }
+
+        let resultsDiv = document.getElementById("results");
+        let loadingDiv = document.getElementById("loading");
+
+        resultsDiv.innerHTML = "";
+        loadingDiv.innerText = "Searching... ⏳";
+
+        try {
+          let response = await fetch("/search?query=" + query);
+
+          if (!response.ok) {
+            throw new Error("Server error");
+          }
+
+          let data = await response.json();
+
+          loadingDiv.innerText = "";
+
+          if (data.results.length === 0) {
+            resultsDiv.innerHTML = "<p>No results found</p>";
+            return;
+          }
+
+          data.results.forEach((res) => {
+            let div = document.createElement("div");
+            div.className = "result";
+            div.innerText = res;
+            resultsDiv.appendChild(div);
+          });
+        } catch (error) {
+          loadingDiv.innerText = "";
+          resultsDiv.innerHTML =
+            "<p style='color:red;'>Error connecting to backend</p>";
+          console.error(error);
+        }
+      }
+    </script>
+  </body>
+</html>
