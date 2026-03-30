@@ -33,10 +33,8 @@ It uses transformer-based embeddings to understand user queries and return the m
 
 ---
 
-## 📸 Demo
-![Demo](add-your-screenshot-here)
-## 📸 Demo
 
+## 📸 DEMO
 ![UI](assets/ui.png)
 ![Results](assets/results.png)
 
